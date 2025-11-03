@@ -2,13 +2,11 @@ from django.db import models
 from django.utils import timezone
 
 
-class ExistTrains(models.Model):
+class Train(models.Model):
     traintype = models.CharField(max_length=100)
-    depratordate = models.DateField()
-    depratortime = models.TimeField(default=timezone.now)
+    depratortime = models.DateTimeField(default=timezone.now)
     price = models.BigIntegerField(default=2000000)
-    returndate = models.DateField(blank=True)
-    returntime = models.TimeField(blank=True)
+    returntime = models.DateTimeField(blank=True)
     origin = models.CharField(max_length=300)
     destination = models.CharField(max_length=300)
     capacity = models.IntegerField(default=100)
@@ -28,6 +26,6 @@ class ExistTrains(models.Model):
         return f'{self.origin} / to : {self.destination}'
     
     class Meta():
-        db_table = 'existtrains'
+        db_table = 'train'
 
 
