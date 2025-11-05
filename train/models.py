@@ -2,13 +2,22 @@ from django.db import models
 from django.utils import timezone
 
 
+class City(models.Model):
+    city = models.CharField(max_length=300)
+
+    def __str__(self):
+        return f'{self.city}'
+    
+    class Mata:
+        db_table = 'city' 
+
 class Train(models.Model):
     traintype = models.CharField(max_length=100)
     depratortime = models.DateTimeField(default=timezone.now)
     price = models.BigIntegerField(default=2000000)
     returntime = models.DateTimeField(blank=True)
-    origin = models.CharField(max_length=300)
-    destination = models.CharField(max_length=300)
+    origin = models.ForeignKey(City)
+    destination = models.ForeignKey(City)
     capacity = models.IntegerField(default=100)
     available = models.BooleanField(default=True)
     rules = models.TextField(default="""
@@ -27,5 +36,4 @@ class Train(models.Model):
     
     class Meta():
         db_table = 'train'
-
 
