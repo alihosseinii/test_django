@@ -16,8 +16,8 @@ class Train(models.Model):
     depratortime = models.DateTimeField(default=timezone.now)
     price = models.BigIntegerField(default=2000000)
     returntime = models.DateTimeField(blank=True)
-    origin = models.ForeignKey(City)
-    destination = models.ForeignKey(City)
+    origin = models.ForeignKey(City,related_name='train_origin', on_delete=models.CASCADE)
+    destination = models.ForeignKey(City,related_name='train_destination', on_delete=models.CASCADE)
     capacity = models.IntegerField(default=100)
     available = models.BooleanField(default=True)
     rules = models.TextField(default="""
