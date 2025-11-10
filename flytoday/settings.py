@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'train',
+    'reservation',
     'django_filters',
     'rest_framework_simplejwt',
     'user',
