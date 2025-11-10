@@ -1,9 +1,8 @@
 from rest_framework.response import Response
 from rest_framework import status, generics
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.permissions import AllowAny
-from .models import UserInformation
-from .serializer import UserLoginSerializer, SingupSerializer
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from .serializer import UserLoginSerializer, SingupSerializer, UserInfoSerializer
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
@@ -17,25 +16,15 @@ class SingupView(generics.CreateAPIView):
         serializer.save()
         return Response({"message": "user registered successfully"}, status=status.HTTP_201_CREATED)
 
-
 class LoginView(generics.GenericAPIView):
     serializer_class = UserLoginSerializer
     permission_classes = [AllowAny]
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        phone = serializer.validated_data["phone_number"]
-        password = serializer.validated_data["password"]
-
-        try:
-            user = UserInformation.objects.get(phone_number=phone)
-        except UserInformation.DoesNotExist:
-            return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
-
-        if not user.check_password(password):
-            return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
+        user = serializer.validated_data['user']
 
         refresh = RefreshToken.for_user(user)
         return Response({
@@ -43,3 +32,9 @@ class LoginView(generics.GenericAPIView):
             "access": str(refresh.access_token),
         })
 
+    class UserProfileView(generics.RetrieveUpdateAPIView):
+        serializer_class = UserInfoSerializer
+        permission_classes = [IsAuthenticated]
+        
+        def get_object(self):
+            return self.request.user

@@ -12,14 +12,12 @@ class SingupSerializer(serializers.ModelSerializer):
             "phone_number": {"required": True}
         }
     
-
     def validate_phone_number(self, value):
         pattern = r'^09\d{9}$'
         if not re.match(pattern, value):
             raise serializers.ValidationError("شماره تلفن باید با 09 شروع شود و دقیقاً 11 رقم عددی باشد.")
         return value
     
-
     def validate(self, data):
         data['username'] = data['phone_number']
         return data
@@ -45,4 +43,11 @@ class UserLoginSerializer(serializers.Serializer):
         
         data["user"] = user
         return data
+    
+class UserInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserInformation
+        fields = ['name', 'nationality', 'national_code', 'gender', 
+                'date_of_birth', 'home_number', 'essential_number', 'address']
+
 
