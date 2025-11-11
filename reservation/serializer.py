@@ -9,7 +9,6 @@ class PassengerSerializer(serializers.ModelSerializer):
         model = Passenger
         fields = ['full_name', 'national_id']
 
-
 class ReservationSerializer(serializers.ModelSerializer):
     passengers = PassengerSerializer(many=True)
     train = serializers.PrimaryKeyRelatedField(queryset=Train.objects.all())
