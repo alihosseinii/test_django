@@ -32,9 +32,9 @@ class LoginView(generics.GenericAPIView):
             "access": str(refresh.access_token),
         })
 
-    class UserProfileView(generics.RetrieveUpdateAPIView):
-        serializer_class = UserInfoSerializer
-        permission_classes = [IsAuthenticated]
-        
-        def get_object(self):
-            return self.request.user
+class UserProfileView(generics.RetrieveUpdateAPIView):
+    serializer_class = UserInfoSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_object(self):
+        return self.request.user

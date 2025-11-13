@@ -1,0 +1,47 @@
+[33mcommit 1279a164d4109a72785b0e125f82e590e512df94[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: seyed ali hosseini <alihosseinihf63@gmail.com>
+Date:   Tue Nov 11 13:30:15 2025 +0330
+
+    allmost completed with a little changes
+
+[33mcommit 5a8f6d21e70d7f46757a1423391668354f2ec65e[m
+Author: seyed ali hosseini <alihosseinihf63@gmail.com>
+Date:   Mon Nov 10 15:09:13 2025 +0330
+
+    some changes in the user app
+
+[33mcommit a24432b99e440a4e0c4c327e572c0bebe5b7e5ab[m
+Author: seyed ali hosseini <alihosseinihf63@gmail.com>
+Date:   Mon Nov 10 11:41:47 2025 +0330
+
+    view and serializer for reservation added
+
+[33mcommit 01e9101a3acb82f7ade180dbf0bc147af369074c[m
+Author: seyed ali hosseini <alihosseinihf63@gmail.com>
+Date:   Sun Nov 9 22:54:00 2025 +0330
+
+    moddels and two apps done
+
+[33mcommit 1a8d0ae9cb7397ec3cfa18cceb5d4b3845200ba0[m
+Author: seyed ali hosseini <alihosseinihf63@gmail.com>
+Date:   Wed Nov 5 16:32:17 2025 +0330
+
+    train updated and finishted almost
+
+[33mcommit d599e289925d0dda1ddfdc5430d1126b612a377d[m
+Author: seyed ali hosseini <alihosseinihf63@gmail.com>
+Date:   Mon Nov 3 13:51:42 2025 +0330
+
+    passenger table added and some changes in train table
+
+[33mcommit 2cb163032f576a8695f5898b12789988bb9a87eb[m
+Author: seyed ali hosseini <alihosseinihf63@gmail.com>
+Date:   Sat Nov 1 23:51:55 2025 +0330
+
+    apps created and moddels wrote
+
+[33mcommit cbb7546ec8f64fb9b0dff51f396237561973ce32[m
+Author: seyed ali hosseini <alihosseinihf63@gmail.com>
+Date:   Sat Nov 1 20:56:36 2025 +0330
+
+    project just created
