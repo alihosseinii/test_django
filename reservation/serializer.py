@@ -11,7 +11,7 @@ class PassengerSerializer(serializers.ModelSerializer):
 
 class ReservationSerializer(serializers.ModelSerializer):
     passengers = PassengerSerializer(many=True)
-    train = serializers.PrimaryKeyRelatedField(queryset=Train.objects.all())
+    train = serializers.PrimaryKeyRelatedField(queryset=Train.objects.filter(depratortime__gte=timezone.now()))
 
     class Meta:
         model = Reservation
@@ -22,8 +22,8 @@ class ReservationSerializer(serializers.ModelSerializer):
         train = data.get('train')
         quantity = data.get('quantity', 1)
 
-        if train.depratortime <= timezone.now():
-            raise serializers.ValidationError("The train has already departed.")
+        # if train.depratortime <= timezone.now():
+        #     raise serializers.ValidationError("The train has already departed.")
         
         reserved_count = Reservation.objects.filter(train=train).aggregate(total=models.Sum('quantity'))['total'] or 0
         available_seats = train.capacity - reserved_count
@@ -42,8 +42,11 @@ class ReservationSerializer(serializers.ModelSerializer):
             train=train,
             quantity=validated_data['quantity']
         )
-
+        passengers = []
         for passenger_data in passengers_data:
-            Passenger.objects.create(reservation=reservation, **passenger_data)
+            p = Passenger(reservation=reservation, **passenger_data)
+            passengers.append(p)
+
+        Passenger.objects.bulk_create(passengers)
 
         return reservation

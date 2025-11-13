@@ -1,12 +1,16 @@
 from rest_framework.serializers import ModelSerializer
 from .models import Train, City
-
+from rest_framework import serializers
 
 class TrainSerializer(ModelSerializer):
     """serializer for trains"""
+    origin = serializers.CharField(source = 'origin.city')
+
     class Meta:
         model = Train
         fields = [ 'id', 'traintype', 'depratortime', 'price', 'returntime', 'origin', 'destination', 'available']
+
+    
 
 class TrainDetailSerializer(ModelSerializer):
     """a serializer for train details """

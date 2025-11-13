@@ -6,8 +6,8 @@ class ReservationCreateView(generics.CreateAPIView):
     serializer_class = ReservationSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    def get_queryset(self):
-        return Reservation.objects.filter(user=self.request.user)
+    # def get_queryset(self):
+    #     return Reservation.objects.filter(user=self.request.user)
 
 
 class ReservationListView(generics.ListAPIView):
