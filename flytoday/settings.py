@@ -146,8 +146,8 @@ AUTH_USER_MODEL = 'user.UserInformation'
 
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Your Project API',
-    'DESCRIPTION': 'Your project description',
+    'TITLE': 'پروژه مان',
+    'DESCRIPTION': 'شماتیک پروژه رو نمایش میده این صفحه ',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': False,
 }
